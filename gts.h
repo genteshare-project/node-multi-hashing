@@ -1,5 +1,5 @@
-#ifndef X15_H
-#define X15_H
+#ifndef GTS_H
+#define GTS_H
 
 #ifdef __cplusplus
 extern "C" {
