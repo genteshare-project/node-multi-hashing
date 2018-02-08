@@ -23,6 +23,7 @@
                 "sha1.c",
                 "whirlpoolx.c",
                 "x15.c",
+                "gts.c",
                 "whirlpoolx.c",
                 "Lyra2RE.c",
                 "zr5.c",

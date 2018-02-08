@@ -23,6 +23,7 @@ extern "C" {
     #include "nist5.h"
     #include "sha1.h"
     #include "x15.h"
+    #include "gts.h"
     #include "fresh.h"
     #include "Lyra2RE.h"
     #include "Lyra2.h"
@@ -541,6 +542,29 @@ NAN_METHOD(x15) {
     );
 }
 
+NAN_METHOD(gts) {
+    NanScope();
+
+    if (args.Length() < 1)
+        return THROW_ERROR_EXCEPTION("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    char output[32];
+
+    uint32_t input_len = Buffer::Length(target);
+
+    gts_hash(input, output, input_len);
+
+    NanReturnValue(
+        NanNewBufferHandle(output, 32)
+    );
+}
+
 NAN_METHOD(fresh) {
     NanScope();
 
@@ -764,6 +788,7 @@ void init(Handle<Object> exports) {
     exports->Set(NanNew<String>("nist5"), NanNew<FunctionTemplate>(nist5)->GetFunction());
     exports->Set(NanNew<String>("sha1"), NanNew<FunctionTemplate>(sha1)->GetFunction());
     exports->Set(NanNew<String>("x15"), NanNew<FunctionTemplate>(x15)->GetFunction());
+    exports->Set(NanNew<String>("gts"), NanNew<FunctionTemplate>(gts)->GetFunction());
     exports->Set(NanNew<String>("fresh"), NanNew<FunctionTemplate>(fresh)->GetFunction());
     exports->Set(NanNew<String>("lyra2re"), NanNew<FunctionTemplate>(lyra2re)->GetFunction());
     exports->Set(NanNew<String>("lyra2re2"), NanNew<FunctionTemplate>(lyra2re2)->GetFunction());
