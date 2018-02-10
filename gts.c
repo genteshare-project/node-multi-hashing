@@ -91,10 +91,6 @@ void gts_hash(const char* input, char* output, uint32_t len)
     sph_shabal512 (&ctx_shabal1, hashB, 64);
     sph_shabal512_close(&ctx_shabal1, hashA);
 
-    sph_fugue512_init (&ctx_fugue1);
-    sph_fugue512 (&ctx_fugue1, hashA, 64);
-    sph_fugue512_close(&ctx_fugue1, hashB);
-
-    memcpy(output, hashB, 32);
+    memcpy(output, hashA, 32);
 
 }
