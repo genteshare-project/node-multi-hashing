@@ -699,7 +699,7 @@ NAN_METHOD(lyra2z330) {
 }
 NAN_METHOD(lyra2z) {
 
-    if (info.Length() < 2)
+    if (args.Length() < 2)
         return THROW_ERROR_EXCEPTION("You must provide two arguments.");
 
     // Local<Object> target = Nan::To<Object>(info[0]).ToLocalChecked();
