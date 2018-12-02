@@ -30,6 +30,7 @@
                 "fresh.c",
                 "Lyra2.c",
                 "Sponge.c",
+                "lyra2z.c",
                 "Lyra2RE.c",
                 "Lyra2REV2.c",
                 "lyra2z330.c",
